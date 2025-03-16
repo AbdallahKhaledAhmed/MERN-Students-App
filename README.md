@@ -1,2 +1,8 @@
 # MERN-Students-App
-In this repo i will learn CRUD operations by making a simple students data app 
+In this repo I learned about CRUD operations by making a simple students data app 
+
+I used tailwind for styling and added darkmode
+
+I used mongodb as a database and express for backend and mongoose as an ORM
+
+and used react for the frontend.
