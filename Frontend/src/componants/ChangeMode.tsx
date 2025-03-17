@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-export default function ChangeMode({ root }) {
+import { ChangeModeProps } from "../main";
+export default function ChangeMode({ root }: ChangeModeProps) {
   const [darkmode, setDarkMode] = useState(false);
   function changemode() {
     if (root.current) {

@@ -3,10 +3,12 @@ import { useRef, useState } from "react";
 import MyTable from "./componants/MyTable";
 import ChangeMode from "./componants/ChangeMode";
 import InputFields from "./componants/InputFields";
+import { student } from "./main"; // Import the student interface
 
 function App() {
-  const root = useRef(null); // refer to the main div to add or remove the datkmode class
-  const [studentsArray, setStudentsArray] = useState([]);
+  const root = useRef<HTMLDivElement>(null);
+  const [studentsArray, setStudentsArray] = useState<student[]>([]); // Explicitly type the state
+
   return (
     <div
       ref={root}
