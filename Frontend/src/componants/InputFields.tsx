@@ -6,7 +6,10 @@ interface InputFieldsProps {
   setStudentsArray: (students: student[]) => void;
 }
 
-export default function InputFields({ studentsArray, setStudentsArray }: InputFieldsProps) {
+export default function InputFields({
+  studentsArray,
+  setStudentsArray,
+}: InputFieldsProps) {
   const form = useRef<HTMLFormElement>(null);
 
   function addNewStudent() {
@@ -61,7 +64,7 @@ export default function InputFields({ studentsArray, setStudentsArray }: InputFi
       />
       <input
         type="submit"
-        className="border-gray-800/80 border-1 rounded dark:border-white"
+        className="border-gray-800/80 border-1 rounded dark:border-white hover:bg-gray-400/50 cursor-pointer"
         value={"Add Student"}
         onClick={(event) => {
           event.preventDefault();

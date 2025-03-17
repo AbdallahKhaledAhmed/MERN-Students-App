@@ -14,7 +14,10 @@ export default function ChangeMode({ root }: ChangeModeProps) {
     }
   }
   return (
-    <button onClick={changemode} className="absolute top-2 right-2">
+    <button
+      onClick={changemode}
+      className="absolute top-2 right-2 hover:bg-gray-400/50 rounded-full cursor-pointer p-1.5"
+    >
       {darkmode ? (
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAACkklEQVRIS9WWz0tUURTHfVSSBOnOdDUrt6kgYpJpGqPiT2ots6q/oZW66k8Id0HQsqTUwSIs+wURmCC6VBe5ciGImGmNn+9wZ7q+ee/d6xCJBw7v3XvO93zP/XluUHFGEpwRb0VZxLlcLkXCGZP0kyAINk47gHKJOyFaMGRdEL87/8RM5y1GUc1oXoZHg805YnyGwO2AX4yajcipBnQb5xn0IjoA+LUNxl5Du9H0fce+E7Knab9CD9F+7O/D5HHE3Thm0UvoPpoG/MFnHUmqC79ZtMoQ94F960UsJwIM8nlhiHsBfyqAsSnhBvQCuoYtZ9na+Z9HL6PD2JREiSTuagjugfgB+ItJpo3vQ1RLccVE2+P7Bn2E31fjd4NvLW0lHinex4kkHhDhMRqH+YMtA9nTODK734sY0lZAGrXL/wif65CvushdgfJ4iD/z0TT7yDTEoy7HIrG5BlMWIH9M6K+jb8sVyLL/4v8q2IPQsZPLRuF6tYknMIxbAfJXIWBtlOKO9kygEexy6KIRdJJ+8fxdM5ziiFvwy+/WU0gLBN98iTXNUVNdTf+Jm8mRgHZ3DcS7XlOdFIwAunl0dn0kC2m/y9F3Vzeb6dZNlSQ6Tk0Qr/wTYgVh1Pf5TCUE/I1tDNJnLlLZXVfmXXy2rCvzJm3tfBURW1Q6J/BbMknqJFyj/TwuiVhiRjgAaBpVdVKF+VgIgk0Fot6017FtWrYO/udQFYkhbPovkbiy2IOnqkol+hNVWYws6OGIJCXiQnXSZXInChtHrJqqh4Dq8SBABSqKx0OgF2dNvx4CKqkltTxpqpW5nj56SZwQz6fPCKBte4nsIF7HqRziqHU918Qpss+YEfy/B71rGn3sZa2xT2CXzzGVOREuTalfVwAAAABJRU5ErkJggg==" />
       ) : (
