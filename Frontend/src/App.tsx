@@ -12,7 +12,7 @@ function App() {
   return (
     <div
       ref={root}
-      className="min-h-screen w-full relative flex flex-wrap flex-col gap-10 justify-center items-center bg- dark:bg-dark-800 dark:text-dark-100"
+      className="min-h-screen w-full relative flex flex-wrap flex-col gap-10 justify-center items-center bg- dark:bg-dark-800 dark:text-dark-100 font-main"
     >
       <MyTable
         studentsArray={studentsArray}
