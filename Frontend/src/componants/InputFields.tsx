@@ -1,40 +1,12 @@
 import { useRef } from "react";
-import { student } from "../main"; // Import the student interface
-
-interface InputFieldsProps {
-  studentsArray: student[];
-  setStudentsArray: (students: student[]) => void;
-}
+import { addStudent } from "../utils/studentFunctions";
+import { InputFieldsProps } from "../main";
 
 export default function InputFields({
   studentsArray,
   setStudentsArray,
 }: InputFieldsProps) {
   const form = useRef<HTMLFormElement>(null);
-
-  function addNewStudent() {
-    if (!form.current) return;
-
-    // Get data from input fields
-    const formData = new FormData(form.current);
-    const data = Object.fromEntries(formData.entries());
-
-    // Create a new student object
-    const newStudent: student = {
-      name: data.name as string,
-      age: parseInt(data.age as string, 10),
-      email: data.email as string,
-      class: data.class as string,
-      db_id: Math.random().toString(36).substring(7), // Generate a random ID for demonstration
-    };
-
-    // Save the new student to the array
-    if (studentsArray.length === 0) {
-      setStudentsArray([newStudent]);
-    } else {
-      setStudentsArray([...studentsArray, newStudent]);
-    }
-  }
 
   return (
     <form className="flex flex-col gap-0.5 dark:bg-dark-900" ref={form}>
@@ -68,7 +40,7 @@ export default function InputFields({
         value={"Add Student"}
         onClick={(event) => {
           event.preventDefault();
-          addNewStudent();
+          addStudent({ studentsArray, setStudentsArray, form });
         }}
       />
     </form>

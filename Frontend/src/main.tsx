@@ -15,6 +15,11 @@ export interface ChangeModeProps {
 export interface MyTableProps {
   studentsArray: student[]; // arr is an array of student objects
 }
+export interface InputFieldsProps {
+  studentsArray: student[];
+  setStudentsArray: (students: student[]) => void;
+  form?: React.RefObject<HTMLFormElement | null>;
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

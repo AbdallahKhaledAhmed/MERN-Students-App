@@ -1,21 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChangeModeProps } from "../main";
+
 export default function ChangeMode({ root }: ChangeModeProps) {
-  const [darkmode, setDarkMode] = useState(false);
-  function changemode() {
-    if (root.current) {
-      if (root.current.classList.contains("dark")) {
-        root.current.classList.remove("dark");
-        setDarkMode(false);
-      } else {
-        root.current.classList.add("dark");
-        setDarkMode(true);
-      }
+  const storedValue = window.localStorage.getItem("darktheme");
+  const [darkmode, setDarkMode] = useState(
+    storedValue ? JSON.parse(storedValue) : false
+  );
+  useEffect(() => {
+    if (darkmode === true) {
+      root.current?.classList.add("dark");
+    } else if (darkmode === false) {
+      root.current?.classList.remove("dark");
     }
-  }
+    window.localStorage.setItem("darktheme", JSON.stringify(darkmode));
+  }, [darkmode, root]);
+
   return (
     <button
-      onClick={changemode}
+      onClick={() => {
+        setDarkMode(!darkmode);
+      }}
       className="absolute top-2 right-2 hover:bg-gray-400/50 rounded-full cursor-pointer p-1.5"
     >
       {darkmode ? (
