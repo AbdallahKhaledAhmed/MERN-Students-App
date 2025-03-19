@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import db_password from "../password";
-import studentsRouter from "../routers/students";
+import studentsRouter from "./routers/students";
 
 mongoose
   .connect(
