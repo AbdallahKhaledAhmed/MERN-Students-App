@@ -3,7 +3,21 @@
 @layer base {
   th,
   td {
-    @apply sm:px-5 sm:py-1 md:px-10 md:py-2  px-2 sm:py-1 text-center;
+    @apply sm:px-5 sm:py-1 md:px-10 md:py-2  px-2 text-center;
+  }
+}
+@layer components {
+  .btn-primary {
+    @apply w-10 h-5 dark:bg-primary-500 rounded px-10 py-4 flex justify-center items-center cursor-pointer text-white bg-[#007bff] hover:bg-[#0069d9] dark:hover:bg-primary-300;
+  }
+  .btn-secondary {
+    @apply w-10 h-5 rounded px-10 py-4 flex justify-center items-center cursor-pointer hover:bg-gray-400/50;
+  }
+  .form-input {
+    @apply border-gray-800/80 border-1 rounded dark:border-white;
+  }
+  .modal-content {
+    @apply bg-white dark:bg-dark-900 rounded shadow-2xl shadow-black/50;
   }
 }
 @theme {

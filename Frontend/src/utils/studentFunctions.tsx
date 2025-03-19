@@ -34,7 +34,7 @@ export function updateStudent(
 ) {
   setShowModal(true);
   setModalData(
-    <div className="bg-white dark:bg-dark-900 ">
+    <div className="modal-content">
       <header className="text-xl px-7 py-2">Edit Student</header>
       <hr />
       <main className="flex flex-col justify-center items-center  w-100 h-60">
@@ -44,39 +44,34 @@ export function updateStudent(
             type="text"
             placeholder="Name"
             value={person.name}
-            className="border-gray-800/80 border-1 rounded dark:border-white"
+            className="form-input"
           />
           <input
             name="age"
             type="number"
             placeholder="Age"
             value={person.age}
-            className="border-gray-800/80 border-1 rounded dark:border-white"
+            className="form-input"
           />
           <input
             name="email"
             type="text"
             placeholder="Email"
             value={person.email}
-            className="border-gray-800/80 border-1 rounded dark:border-white"
+            className="form-input"
           />
           <input
             name="class"
             type="text"
             placeholder="Class"
             value={person.class}
-            className="border-gray-800/80 border-1 rounded dark:border-white"
+            className="form-input"
           />
         </form>
       </main>
       <footer className="flex justify-end gap-3 mx-4 my-4">
-        <button className="w-10 h-5 dark:bg-primary-500 rounded px-10 py-4 flex justify-center items-center cursor-pointer text-white bg-[#007bff]">
-          Save
-        </button>
-        <button
-          className="w-10 h-5 rounded px-10 py-4 flex justify-center items-center cursor-pointer "
-          onClick={() => setShowModal(false)}
-        >
+        <button className="btn-primary">Save</button>
+        <button className="btn-secondary" onClick={() => setShowModal(false)}>
           Cancel
         </button>
       </footer>
@@ -90,20 +85,15 @@ export function deleteStudent(
 ) {
   setShowModal(true);
   setModalData(
-    <div className="bg-white dark:bg-dark-900">
+    <div className="modal-content">
       <header className="text-xl px-7 py-2">Delete Student</header>
       <hr />
       <main className="w-100 h-30 flex justify-center items-center">
         <p>Are you sure you want to Delete {person.name}</p>
       </main>
       <footer className="flex justify-end gap-3 mx-4 my-4">
-        <button className="w-10 h-5 dark:bg-primary-500 rounded px-10 py-4 flex justify-center items-center cursor-pointer text-white bg-[#007bff]">
-          Yes
-        </button>
-        <button
-          className="w-10 h-5 rounded px-10 py-4 flex justify-center items-center cursor-pointer "
-          onClick={() => setShowModal(false)}
-        >
+        <button className="btn-primary">Yes</button>
+        <button className="btn-secondary" onClick={() => setShowModal(false)}>
           No
         </button>
       </footer>

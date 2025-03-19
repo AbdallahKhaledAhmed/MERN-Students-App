@@ -14,29 +14,29 @@ export default function InputFields({
         name="name"
         type="text"
         placeholder="Name"
-        className="border-gray-800/80 border-1 rounded dark:border-white"
+        className="form-input"
       />
       <input
         name="age"
         type="number"
         placeholder="Age"
-        className="border-gray-800/80 border-1 rounded dark:border-white"
+        className="form-input"
       />
       <input
         name="email"
         type="text"
         placeholder="Email"
-        className="border-gray-800/80 border-1 rounded dark:border-white"
+        className="form-input"
       />
       <input
         name="class"
         type="text"
         placeholder="Class"
-        className="border-gray-800/80 border-1 rounded dark:border-white"
+        className="form-input"
       />
       <input
         type="submit"
-        className="border-gray-800/80 border-1 rounded dark:border-white hover:bg-gray-400/50 cursor-pointer"
+        className="form-input hover:bg-gray-400/50 cursor-pointer"
         value={"Add Student"}
         onClick={(event) => {
           event.preventDefault();
