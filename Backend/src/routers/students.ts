@@ -1,6 +1,9 @@
 import express from "express";
 import { studentModel } from "../models/student";
+import multer from "multer";
 const router = express.Router();
+//multer
+const upload = multer({ dest: "uploads/" });
 
 router.get("/", (_, res) => {
   studentModel
@@ -17,7 +20,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", upload.none(), (req, res) => {
   const data = req.body;
   studentModel
     .create(data)
@@ -27,7 +30,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", upload.none(), (req, res) => {
   const data = req.body;
   studentModel
     .findByIdAndUpdate(req.params.id, data, { new: true })

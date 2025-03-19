@@ -5,7 +5,11 @@ import InputFields from "../componants/InputFields";
 const apiUrl =
   "https://backend-mern-students-app-production.up.railway.app/students";
 function apiSendAdd(person) {
-  fetch(apiUrl, { method: "POST", body: person });
+  console.log(person);
+  fetch(apiUrl, {
+    method: "POST",
+    body: person, // Works if person is FormData
+  });
 }
 export function addStudent(
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
