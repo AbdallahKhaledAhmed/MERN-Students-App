@@ -4,12 +4,42 @@ import InputFields from "../componants/InputFields";
 
 const apiUrl =
   "https://backend-mern-students-app-production.up.railway.app/students";
-function apiSendAdd(person) {
-  console.log(person);
-  fetch(apiUrl, {
-    method: "POST",
-    body: person, // Works if person is FormData
-  });
+let studentsArraySetter: React.Dispatch<React.SetStateAction<student[]>>;
+
+export function getAllStudents() {
+  fetch(apiUrl, { method: "GET" })
+    .then((data) => data.json())
+    .then((data: student[]) => {
+      studentsArraySetter(data);
+    })
+    .catch(() => console.log("Fetch All Error"));
+}
+
+function apiSend(operation: string, data, form?) {
+  switch (operation) {
+    case "add":
+      data = new FormData(data.current);
+      fetch(apiUrl, {
+        method: "POST",
+        body: data,
+      });
+      getAllStudents();
+      break;
+    case "edit":
+      data = new FormData(data.current);
+      fetch(apiUrl, {
+        method: "PUT",
+        body: data,
+      });
+      getAllStudents();
+      break;
+    case "del":
+      fetch(apiUrl + data._id, {
+        method: "DELETE",
+      });
+      getAllStudents();
+      break;
+  }
 }
 export function addStudent(
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
@@ -28,7 +58,7 @@ export function addStudent(
         <button
           className="btn-primary"
           onClick={() => {
-            apiSendAdd(new FormData(form.current));
+            apiSend("add", form);
             setShowModal(false);
           }}
         >
@@ -40,19 +70,6 @@ export function addStudent(
       </footer>
     </div>
   );
-  // const newStudent: student = {
-  //   name: data.name as string,
-  //   age: parseInt(data.age as string, 10),
-  //   email: data.email as string,
-  //   class: data.class as string,
-  //   db_id: Math.random().toString(36).substring(7), // Generate a random ID for demonstration
-  // };
-  // // Save the new student to the array
-  // if (studentsArray.length === 0) {
-  //   setStudentsArray([newStudent]);
-  // } else {
-  //   setStudentsArray([...studentsArray, newStudent]);
-  // }
 }
 
 export function updateStudent(
@@ -70,7 +87,15 @@ export function updateStudent(
         <InputFields form={form} />
       </main>
       <footer className="flex justify-end gap-3 mx-4 my-4">
-        <button className="btn-primary">Save</button>
+        <button
+          className="btn-primary"
+          onClick={() => {
+            apiSend("edit", person, form);
+            setShowModal(false);
+          }}
+        >
+          Save
+        </button>
         <button className="btn-secondary" onClick={() => setShowModal(false)}>
           Cancel
         </button>
@@ -92,7 +117,15 @@ export function deleteStudent(
         <p>Are you sure you want to Delete {person.name}</p>
       </main>
       <footer className="flex justify-end gap-3 mx-4 my-4">
-        <button className="btn-primary-danger">Yes</button>
+        <button
+          className="btn-primary-danger"
+          onClick={() => {
+            apiSend("del", person);
+            setShowModal(false);
+          }}
+        >
+          Yes
+        </button>
         <button className="btn-secondary" onClick={() => setShowModal(false)}>
           No
         </button>
@@ -103,10 +136,12 @@ export function deleteStudent(
 
 export function showStudents(
   studentsArray: student[],
+  setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
   form: React.Ref<HTMLFormElement>
 ) {
+  studentsArraySetter = setStudentsArray;
   return studentsArray.map((person) => {
     return (
       <tr key={person.db_id}>

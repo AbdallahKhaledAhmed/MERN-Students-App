@@ -1,16 +1,19 @@
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { student } from "../main";
 import { addStudent, showStudents } from "../utils/studentFunctions";
 import Modal from "./Modal";
+import { getAllStudents } from "../utils/studentFunctions";
 export default function MyTable() {
   const [studentsArray, setStudentsArray] = useState<student[]>([]); // Explicitly type the state
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState<undefined | ReactNode>(undefined);
   const form = useRef<HTMLFormElement>(null);
+
+  useEffect(getAllStudents, []);
   return (
-    <>
+    <div className="flex flex-col gap-2 mt-50">
       <button
-        className="btn-secondary border border-black dark:border-white w-fit px-4"
+        className="btn-secondary border border-black dark:border-white w-fit px-4 self-center"
         onClick={() => {
           addStudent(setShowModal, setModalData, form);
         }}
@@ -29,8 +32,16 @@ export default function MyTable() {
             <th>Controls</th>
           </tr>
         </thead>
-        <tbody>{showStudents(studentsArray, setShowModal, setModalData)}</tbody>
+        <tbody>
+          {showStudents(
+            studentsArray,
+            setStudentsArray,
+            setShowModal,
+            setModalData,
+            form
+          )}
+        </tbody>
       </table>
-    </>
+    </div>
   );
 }

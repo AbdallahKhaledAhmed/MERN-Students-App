@@ -39,8 +39,8 @@ router.put("/:id", upload.none(), (req, res) => {
       res.status(404).send(`Failed ${err}`);
     });
 });
-router.delete("/", (req, res) => {
-  const userID = req.body;
+router.delete("/:id", (req, res) => {
+  const userID = req.params.id;
   studentModel
     .findByIdAndDelete(userID)
     .then(() => res.status(204))
