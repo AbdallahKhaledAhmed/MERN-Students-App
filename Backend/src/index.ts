@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
-import db_password from "../password";
 import studentsRouter from "./routers/students";
+
+const db_password = process.env.DB_PASSWORD;
 
 mongoose
   .connect(
