@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import studentsRouter from "./routers/students";
+import cors from "cors";
 
 const db_password = process.env.DB_PASSWORD;
 
@@ -22,5 +23,6 @@ app.listen(port, () => {
   console.log(`Running on http://localhost:${port}`);
 });
 
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/students", studentsRouter);

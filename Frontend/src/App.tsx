@@ -1,14 +1,10 @@
 import "./index.css";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import MyTable from "./componants/MyTable";
 import ChangeMode from "./componants/ChangeMode";
-import InputFields from "./componants/InputFields";
-import { student } from "./main"; // Import the student interface
 
 function App() {
   const root = useRef<HTMLDivElement>(null);
-  const [studentsArray, setStudentsArray] = useState<student[]>([]); // Explicitly type the state
-
   return (
     <div
       ref={root}
@@ -21,15 +17,8 @@ function App() {
       >
         <i className="bx bxl-github"></i>
       </a>
-      <MyTable
-        studentsArray={studentsArray}
-        setStudentsArray={setStudentsArray}
-      />
+      <MyTable />
       <ChangeMode root={root} />
-      <InputFields
-        studentsArray={studentsArray}
-        setStudentsArray={setStudentsArray}
-      />
     </div>
   );
 }

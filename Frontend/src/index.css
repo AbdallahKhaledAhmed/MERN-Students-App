@@ -10,8 +10,11 @@
   .btn-primary {
     @apply w-10 h-5 dark:bg-primary-500 rounded px-10 py-4 flex justify-center items-center cursor-pointer text-white bg-[#007bff] hover:bg-[#0069d9] dark:hover:bg-primary-300;
   }
+  .btn-primary-danger {
+    @apply w-10 h-5  rounded px-10 py-4 flex justify-center items-center cursor-pointer text-red-700 border border-red-700 hover:bg-red-500 hover:text-white dark:hover:bg-error font-medium;
+  }
   .btn-secondary {
-    @apply w-10 h-5 rounded px-10 py-4 flex justify-center items-center cursor-pointer hover:bg-gray-400/50;
+    @apply w-10 h-5 rounded px-10 py-4 flex justify-center items-center cursor-pointer hover:bg-gray-400/50  border border-transparent font-medium;
   }
   .form-input {
     @apply border-gray-800/80 border-1 rounded dark:border-white;

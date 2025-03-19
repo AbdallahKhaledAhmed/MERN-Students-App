@@ -1,13 +1,6 @@
-import { useRef } from "react";
-import { addStudent } from "../utils/studentFunctions";
-import { InputFieldsProps } from "../main";
+import { reactUseRef } from "../main";
 
-export default function InputFields({
-  studentsArray,
-  setStudentsArray,
-}: InputFieldsProps) {
-  const form = useRef<HTMLFormElement>(null);
-
+export default function InputFields({ form }: reactUseRef) {
   return (
     <form className="flex flex-col gap-0.5 dark:bg-dark-900" ref={form}>
       <input
@@ -33,15 +26,6 @@ export default function InputFields({
         type="text"
         placeholder="Class"
         className="form-input"
-      />
-      <input
-        type="submit"
-        className="form-input hover:bg-gray-400/50 cursor-pointer"
-        value={"Add Student"}
-        onClick={(event) => {
-          event.preventDefault();
-          addStudent({ studentsArray, setStudentsArray, form });
-        }}
       />
     </form>
   );

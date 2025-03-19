@@ -20,7 +20,9 @@ export interface InputFieldsProps {
   setStudentsArray: (students: student[]) => void;
   form?: React.RefObject<HTMLFormElement | null>;
 }
-
+export interface reactUseRef {
+  form: React.Ref<HTMLFormElement>;
+}
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
