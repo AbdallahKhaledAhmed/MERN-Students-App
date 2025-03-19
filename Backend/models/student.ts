@@ -10,8 +10,8 @@ interface Istudent extends Document {
 const studentSchema: Schema = new Schema({
   name: { type: String, required: true },
   age: { type: Number, required: true },
-  email: { type: String, required: true },
-  class: { type: String, required: true },
+  email: { type: String },
+  class: { type: String },
 });
 
 export const studentModel = mongoose.model<Istudent>("students", studentSchema);

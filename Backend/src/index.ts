@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import db_password from "../password";
-import { studentModel } from "../models/student";
+import studentsRouter from "../routers/students";
+
 mongoose
   .connect(
     `mongodb+srv://abdallahkhaled9321:${db_password}@cluster0.brs9r.mongodb.net/students?retryWrites=true&w=majority&appName=Cluster0`
@@ -14,25 +15,11 @@ mongoose
   });
 
 const app = express();
-const port = 3002;
+const port = 3001;
 
 app.listen(port, () => {
   console.log(`Running on http://localhost:${port}`);
 });
 
-app.get("/students", (req, res) => {
-  let students = studentModel
-    .find()
-    .then((students) => {
-      res.send(students);
-    })
-    .catch(() => console.log("error"));
-});
-app.get("/students/:id", (req, res) => {
-  let students = studentModel
-    .find()
-    .then((students) => {
-      res.send(students);
-    })
-    .catch(() => console.log("error"));
-});
+app.use(express.json());
+app.use("/students", studentsRouter);
