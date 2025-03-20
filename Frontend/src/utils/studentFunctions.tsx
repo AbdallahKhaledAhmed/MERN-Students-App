@@ -3,47 +3,61 @@ import { student } from "../main";
 import InputFields from "../componants/InputFields";
 
 const apiUrl =
-  "https://backend-mern-students-app-production.up.railway.app/students";
-let studentsArraySetter: React.Dispatch<React.SetStateAction<student[]>>;
+  "https://backend-mern-students-app-production.up.railway.app/students/";
 
-export function getAllStudents() {
+export function getAllStudents(
+  setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>
+) {
   fetch(apiUrl, { method: "GET" })
     .then((data) => data.json())
     .then((data: student[]) => {
-      studentsArraySetter(data);
+      setStudentsArray(data);
     })
     .catch(() => console.log("Fetch All Error"));
 }
 
-function apiSend(operation: string, data, form?) {
+function apiSend(operation: string, data, setStudentsArray, form?) {
+  let dataToSend = null;
+  if (form) {
+    dataToSend = new FormData(form.current);
+  }
   switch (operation) {
     case "add":
       data = new FormData(data.current);
       fetch(apiUrl, {
         method: "POST",
         body: data,
-      });
-      getAllStudents();
+      })
+        .then(() => getAllStudents(setStudentsArray))
+        .catch(() => {
+          console.log("Error Request Failed");
+        });
       break;
     case "edit":
-      data = new FormData(data.current);
-      fetch(apiUrl, {
+      fetch(apiUrl + data._id, {
         method: "PUT",
-        body: data,
-      });
-      getAllStudents();
+        body: dataToSend,
+      })
+        .then(() => getAllStudents(setStudentsArray))
+        .catch(() => {
+          console.log("Error Request Failed");
+        });
       break;
     case "del":
       fetch(apiUrl + data._id, {
         method: "DELETE",
-      });
-      getAllStudents();
+      })
+        .then(() => getAllStudents(setStudentsArray))
+        .catch(() => {
+          console.log("Error Request Failed");
+        });
       break;
   }
 }
 export function addStudent(
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
+  setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
   form: React.Ref<HTMLFormElement>
 ) {
   setShowModal(true);
@@ -58,7 +72,7 @@ export function addStudent(
         <button
           className="btn-primary"
           onClick={() => {
-            apiSend("add", form);
+            apiSend("add", form, setStudentsArray);
             setShowModal(false);
           }}
         >
@@ -76,6 +90,7 @@ export function updateStudent(
   person: student,
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
+  setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
   form: React.Ref<HTMLFormElement>
 ) {
   setShowModal(true);
@@ -90,7 +105,7 @@ export function updateStudent(
         <button
           className="btn-primary"
           onClick={() => {
-            apiSend("edit", person, form);
+            apiSend("edit", person, setStudentsArray, form);
             setShowModal(false);
           }}
         >
@@ -106,7 +121,8 @@ export function updateStudent(
 export function deleteStudent(
   person: student,
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
-  setModalData: React.Dispatch<React.SetStateAction<ReactNode>>
+  setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
+  setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>
 ) {
   setShowModal(true);
   setModalData(
@@ -120,7 +136,7 @@ export function deleteStudent(
         <button
           className="btn-primary-danger"
           onClick={() => {
-            apiSend("del", person);
+            apiSend("del", person, setStudentsArray);
             setShowModal(false);
           }}
         >
@@ -141,10 +157,9 @@ export function showStudents(
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
   form: React.Ref<HTMLFormElement>
 ) {
-  studentsArraySetter = setStudentsArray;
   return studentsArray.map((person) => {
     return (
-      <tr key={person.db_id}>
+      <tr key={person._id}>
         <td className="pb-4">{person.name}</td>
         <td className="pb-4">{person.age}</td>
         <td className="pb-4">{person.email}</td>
@@ -153,22 +168,29 @@ export function showStudents(
           <button
             className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
             onClick={() =>
-              updateStudent(person, setShowModal, setModalData, form)
+              updateStudent(
+                person,
+                setShowModal,
+                setModalData,
+                setStudentsArray,
+                form
+              )
             }
           >
-            <i
-              className="bx bxs-message-square-edit text-3xl"
-              style={{ color: "#52b921" }}
-            ></i>
+            <i className="bx bxs-message-square-edit text-3xl text-[#52b921]"></i>
           </button>
           <button
             className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
-            onClick={() => deleteStudent(person, setShowModal, setModalData)}
+            onClick={() =>
+              deleteStudent(
+                person,
+                setShowModal,
+                setModalData,
+                setStudentsArray
+              )
+            }
           >
-            <i
-              className="bx bxs-message-square-x text-3xl"
-              style={{ color: "#ab3224" }}
-            ></i>
+            <i className="bx bxs-message-square-x text-3xl text-[#ab3224]"></i>
           </button>
         </td>
       </tr>

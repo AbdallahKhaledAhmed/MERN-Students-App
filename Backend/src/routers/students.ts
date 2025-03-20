@@ -43,7 +43,7 @@ router.delete("/:id", (req, res) => {
   const userID = req.params.id;
   studentModel
     .findByIdAndDelete(userID)
-    .then(() => res.status(204))
+    .then(() => res.status(204).send())
     .catch((err) => {
       res.status(404).send(`Failed ${err}`);
     });

@@ -7,7 +7,7 @@ export interface student {
   age: number;
   email: string;
   class: string;
-  db_id: string;
+  _id: string;
 }
 export interface ChangeModeProps {
   root: React.RefObject<HTMLDivElement | null>; // root is of type HTMLFormElement
@@ -17,8 +17,8 @@ export interface MyTableProps {
 }
 export interface InputFieldsProps {
   studentsArray: student[];
-  setStudentsArray: (students: student[]) => void;
-  form?: React.RefObject<HTMLFormElement | null>;
+  setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>;
+  form?: React.RefObject<HTMLFormElement>;
 }
 export interface reactUseRef {
   form: React.Ref<HTMLFormElement>;

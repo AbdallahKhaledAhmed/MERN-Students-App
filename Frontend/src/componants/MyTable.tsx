@@ -9,13 +9,13 @@ export default function MyTable() {
   const [modalData, setModalData] = useState<undefined | ReactNode>(undefined);
   const form = useRef<HTMLFormElement>(null);
 
-  useEffect(getAllStudents, []);
+  useEffect(() => getAllStudents(setStudentsArray), []);
   return (
     <div className="flex flex-col gap-2 mt-50">
       <button
         className="btn-secondary border border-black dark:border-white w-fit px-4 self-center"
         onClick={() => {
-          addStudent(setShowModal, setModalData, form);
+          addStudent(setShowModal, setModalData,setStudentsArray, form);
         }}
       >
         Add Student
