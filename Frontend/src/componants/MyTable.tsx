@@ -21,7 +21,7 @@ export default function MyTable() {
         Add Student
         <i className="bx bx-plus-medical text-green-600 ml-1.5 dark:text-success"></i>
       </button>
-      <table className="h-fit w-full border-2  md:w-fit dark:bg-dark-900">
+      <table className="h-fit w-full border-2  md:w-fit dark:bg-dark-900 max-w-full">
         <Modal showModal={showModal}>{modalData}</Modal>
         <thead className="border-b-2">
           <tr>

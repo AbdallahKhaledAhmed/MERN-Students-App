@@ -5,6 +5,9 @@
   td {
     @apply p-1 text-center w-full  h-fit sm:p-2 sm:w-fit md:px-3;
   }
+  tr > td {
+    @apply break-words;
+  }
 }
 @layer components {
   .btn-primary {
