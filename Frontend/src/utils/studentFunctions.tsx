@@ -179,14 +179,14 @@ export function showStudents(
     return studentsArray.map((person) => {
       return (
         <tr key={person._id}>
-          <td className="pb-4">{person.name}</td>
-          <td className="pb-4">{person.age}</td>
-          <td className="pb-4">{person.email}</td>
-          <td className="pb-4">{person.class}</td>
+          <td>{person.name}</td>
+          <td>{person.age}</td>
+          <td>{person.email}</td>
+          <td>{person.class}</td>
           <td>
             <button
               title="Edit Student"
-              className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
+              className="hover:bg-gray-400/50 rounded-full cursor-pointer w-11 h-11 inline-flex  justify-center items-center"
               onClick={() =>
                 updateStudent(
                   person,
@@ -201,7 +201,7 @@ export function showStudents(
             </button>
             <button
               title="Delete Student"
-              className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
+              className="hover:bg-gray-400/50 rounded-full cursor-pointer w-11 h-11 inline-flex  justify-center items-center"
               onClick={() =>
                 deleteStudent(
                   person,
