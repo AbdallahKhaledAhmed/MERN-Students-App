@@ -17,7 +17,7 @@ export default function InputFields({ form, obj }: formData) {
         type="number"
         placeholder="Age"
         className="form-input"
-        defaultValue={obj.age}
+        defaultValue={obj.age !== undefined ? obj.age : ""}
       />
       <input
         name="email"

@@ -18,9 +18,9 @@ export function getAllStudents(
 
 function apiSend(
   operation: "add" | "edit" | "del",
-  data: student | React.RefObject<HTMLFormElement>,
+  data: student | React.RefObject<HTMLFormElement | null>,
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
-  form?: React.RefObject<HTMLFormElement>
+  form?: React.RefObject<HTMLFormElement | null>
 ) {
   let dataToSend: FormData | null = null;
   if (form && form.current) {
@@ -68,7 +68,7 @@ export function addStudent(
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
-  form: React.RefObject<HTMLFormElement>
+  form: React.RefObject<HTMLFormElement | null> // Allow null here
 ) {
   setShowModal(true);
   setModalData(
@@ -101,7 +101,7 @@ export function updateStudent(
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
-  form: React.RefObject<HTMLFormElement>
+  form: React.RefObject<HTMLFormElement | null>
 ) {
   setShowModal(true);
   setModalData(
@@ -165,7 +165,7 @@ export function showStudents(
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
-  form: React.RefObject<HTMLFormElement>
+  form: React.RefObject<HTMLFormElement | null>
 ) {
   if (studentsArray.length === 0) {
     return (
