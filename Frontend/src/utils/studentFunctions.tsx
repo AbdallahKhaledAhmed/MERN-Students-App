@@ -167,43 +167,53 @@ export function showStudents(
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
   form: React.RefObject<HTMLFormElement>
 ) {
-  return studentsArray.map((person) => {
+  if (studentsArray.length === 0) {
     return (
-      <tr key={person._id}>
-        <td className="pb-4">{person.name}</td>
-        <td className="pb-4">{person.age}</td>
-        <td className="pb-4">{person.email}</td>
-        <td className="pb-4">{person.class}</td>
-        <td>
-          <button
-            className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
-            onClick={() =>
-              updateStudent(
-                person,
-                setShowModal,
-                setModalData,
-                setStudentsArray,
-                form
-              )
-            }
-          >
-            <i className="bx bxs-message-square-edit text-3xl text-[#52b921]"></i>
-          </button>
-          <button
-            className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
-            onClick={() =>
-              deleteStudent(
-                person,
-                setShowModal,
-                setModalData,
-                setStudentsArray
-              )
-            }
-          >
-            <i className="bx bxs-message-square-x text-3xl text-[#ab3224]"></i>
-          </button>
+      <tr>
+        <td colSpan={5} className="text-center">
+          No Students Found !
         </td>
       </tr>
     );
-  });
+  } else {
+    return studentsArray.map((person) => {
+      return (
+        <tr key={person._id}>
+          <td className="pb-4">{person.name}</td>
+          <td className="pb-4">{person.age}</td>
+          <td className="pb-4">{person.email}</td>
+          <td className="pb-4">{person.class}</td>
+          <td>
+            <button
+              className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
+              onClick={() =>
+                updateStudent(
+                  person,
+                  setShowModal,
+                  setModalData,
+                  setStudentsArray,
+                  form
+                )
+              }
+            >
+              <i className="bx bxs-message-square-edit text-3xl text-[#52b921]"></i>
+            </button>
+            <button
+              className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
+              onClick={() =>
+                deleteStudent(
+                  person,
+                  setShowModal,
+                  setModalData,
+                  setStudentsArray
+                )
+              }
+            >
+              <i className="bx bxs-message-square-x text-3xl text-[#ab3224]"></i>
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  }
 }
