@@ -185,6 +185,7 @@ export function showStudents(
           <td className="pb-4">{person.class}</td>
           <td>
             <button
+              title="Edit Student"
               className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
               onClick={() =>
                 updateStudent(
@@ -199,6 +200,7 @@ export function showStudents(
               <i className="bx bxs-message-square-edit text-3xl text-[#52b921]"></i>
             </button>
             <button
+              title="Delete Student"
               className="hover:bg-gray-400/50 rounded-full cursor-pointer p-1"
               onClick={() =>
                 deleteStudent(
