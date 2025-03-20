@@ -4,10 +4,10 @@ import "./index.css";
 import App from "./App.tsx";
 export interface student {
   name: string;
-  age: number;
+  age: number | undefined;
   email: string;
   class: string;
-  _id: string;
+  _id?: string;
 }
 export interface ChangeModeProps {
   root: React.RefObject<HTMLDivElement | null>; // root is of type HTMLFormElement
@@ -20,8 +20,9 @@ export interface InputFieldsProps {
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>;
   form?: React.RefObject<HTMLFormElement>;
 }
-export interface reactUseRef {
+export interface formData {
   form: React.Ref<HTMLFormElement>;
+  obj: student | null;
 }
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

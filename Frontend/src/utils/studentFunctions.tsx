@@ -16,25 +16,34 @@ export function getAllStudents(
     .catch(() => console.log("Fetch All Error"));
 }
 
-function apiSend(operation: string, data, setStudentsArray, form?) {
-  let dataToSend = null;
-  if (form) {
+function apiSend(
+  operation: "add" | "edit" | "del",
+  data: student | React.RefObject<HTMLFormElement>,
+  setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
+  form?: React.RefObject<HTMLFormElement>
+) {
+  let dataToSend: FormData | null = null;
+  if (form && form.current) {
     dataToSend = new FormData(form.current);
   }
   switch (operation) {
     case "add":
-      data = new FormData(data.current);
-      fetch(apiUrl, {
-        method: "POST",
-        body: data,
-      })
-        .then(() => getAllStudents(setStudentsArray))
-        .catch(() => {
-          console.log("Error Request Failed");
-        });
+      if (data && (data as React.RefObject<HTMLFormElement>).current) {
+        const formData = new FormData(
+          (data as React.RefObject<HTMLFormElement>).current
+        );
+        fetch(apiUrl, {
+          method: "POST",
+          body: formData,
+        })
+          .then(() => getAllStudents(setStudentsArray))
+          .catch(() => {
+            console.log("Error Request Failed");
+          });
+      }
       break;
     case "edit":
-      fetch(apiUrl + data._id, {
+      fetch(apiUrl + (data as student)._id, {
         method: "PUT",
         body: dataToSend,
       })
@@ -44,7 +53,7 @@ function apiSend(operation: string, data, setStudentsArray, form?) {
         });
       break;
     case "del":
-      fetch(apiUrl + data._id, {
+      fetch(apiUrl + (data as student)._id, {
         method: "DELETE",
       })
         .then(() => getAllStudents(setStudentsArray))
@@ -54,11 +63,12 @@ function apiSend(operation: string, data, setStudentsArray, form?) {
       break;
   }
 }
+
 export function addStudent(
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
-  form: React.Ref<HTMLFormElement>
+  form: React.RefObject<HTMLFormElement>
 ) {
   setShowModal(true);
   setModalData(
@@ -66,7 +76,7 @@ export function addStudent(
       <header className="text-xl px-7 py-2">Add Student</header>
       <hr />
       <main className="flex flex-col justify-center items-center  w-100 h-60">
-        <InputFields form={form} />
+        <InputFields form={form} obj={null} />
       </main>
       <footer className="flex justify-end gap-3 mx-4 my-4">
         <button
@@ -91,7 +101,7 @@ export function updateStudent(
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
-  form: React.Ref<HTMLFormElement>
+  form: React.RefObject<HTMLFormElement>
 ) {
   setShowModal(true);
   setModalData(
@@ -99,7 +109,7 @@ export function updateStudent(
       <header className="text-xl px-7 py-2">Edit Student</header>
       <hr />
       <main className="flex flex-col justify-center items-center  w-100 h-60">
-        <InputFields form={form} />
+        <InputFields form={form} obj={person} />
       </main>
       <footer className="flex justify-end gap-3 mx-4 my-4">
         <button
@@ -155,7 +165,7 @@ export function showStudents(
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
   setModalData: React.Dispatch<React.SetStateAction<ReactNode>>,
-  form: React.Ref<HTMLFormElement>
+  form: React.RefObject<HTMLFormElement>
 ) {
   return studentsArray.map((person) => {
     return (

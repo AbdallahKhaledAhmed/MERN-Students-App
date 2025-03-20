@@ -15,7 +15,7 @@ export default function MyTable() {
       <button
         className="btn-secondary border border-black dark:border-white w-fit px-4 self-center"
         onClick={() => {
-          addStudent(setShowModal, setModalData,setStudentsArray, form);
+          addStudent(setShowModal, setModalData, setStudentsArray, form);
         }}
       >
         Add Student
