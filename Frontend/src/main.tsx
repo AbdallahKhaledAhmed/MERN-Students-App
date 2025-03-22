@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "./build.css";
 import App from "./App.tsx";
 export interface student {
   name: string;

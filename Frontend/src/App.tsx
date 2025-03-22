@@ -1,4 +1,4 @@
-import "./index.css";
+import "./build.css";
 import { useRef } from "react";
 import MyTable from "./componants/MyTable";
 import ChangeMode from "./componants/ChangeMode";

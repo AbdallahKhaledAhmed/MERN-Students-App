@@ -176,46 +176,44 @@ export function showStudents(
       </tr>
     );
   } else {
-    return studentsArray.map((person) => {
-      return (
-        <tr key={person._id}>
-          <td>{person.name}</td>
-          <td>{person.age}</td>
-          <td>{person.email}</td>
-          <td>{person.class}</td>
-          <td>
-            <button
-              title="Edit Student"
-              className="hover:bg-gray-400/50 rounded-full cursor-pointer w-11 h-11 inline-flex  justify-center items-center"
-              onClick={() =>
-                updateStudent(
-                  person,
-                  setShowModal,
-                  setModalData,
-                  setStudentsArray,
-                  form
-                )
-              }
-            >
-              <i className="bx bxs-message-square-edit text-3xl text-[#52b921]"></i>
-            </button>
-            <button
-              title="Delete Student"
-              className="hover:bg-gray-400/50 rounded-full cursor-pointer w-11 h-11 inline-flex  justify-center items-center"
-              onClick={() =>
-                deleteStudent(
-                  person,
-                  setShowModal,
-                  setModalData,
-                  setStudentsArray
-                )
-              }
-            >
-              <i className="bx bxs-message-square-x text-3xl text-[#ab3224]"></i>
-            </button>
-          </td>
-        </tr>
-      );
-    });
+    return studentsArray.map((person) => (
+      <tr key={person._id}>
+        <td>{person.name}</td>
+        <td>{person.age}</td>
+        <td>{person.email}</td>
+        <td>{person.class}</td>
+        <td>
+          <button
+            title="Edit Student"
+            className="hover:bg-gray-400/50 rounded-full cursor-pointer w-11 h-11 inline-flex  justify-center items-center"
+            onClick={() =>
+              updateStudent(
+                person,
+                setShowModal,
+                setModalData,
+                setStudentsArray,
+                form
+              )
+            }
+          >
+            <i className="bx bxs-message-square-edit text-3xl text-[#52b921]"></i>
+          </button>
+          <button
+            title="Delete Student"
+            className="hover:bg-gray-400/50 rounded-full cursor-pointer w-11 h-11 inline-flex  justify-center items-center"
+            onClick={() =>
+              deleteStudent(
+                person,
+                setShowModal,
+                setModalData,
+                setStudentsArray
+              )
+            }
+          >
+            <i className="bx bxs-message-square-x text-3xl text-[#ab3224]"></i>
+          </button>
+        </td>
+      </tr>
+    ));
   }
 }
