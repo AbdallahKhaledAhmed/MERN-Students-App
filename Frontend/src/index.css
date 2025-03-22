@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@layer base {
+  th,
+  td {
+    @apply p-1 text-center w-full  h-fit sm:p-2 sm:w-fit md:px-3;
+  }
+}
+@layer components {
+  .btn-primary {
+    @apply w-10 h-5 dark:bg-primary-500 rounded px-10 py-4 flex justify-center items-center cursor-pointer text-white bg-[#007bff] hover:bg-[#0069d9] dark:hover:bg-primary-300;
+  }
+  .btn-primary-danger {
+    @apply w-10 h-5  rounded px-10 py-4 flex justify-center items-center cursor-pointer text-red-700 border border-red-700 hover:bg-red-500 hover:text-white dark:hover:bg-error font-medium;
+  }
+  .btn-secondary {
+    @apply w-10 h-5 rounded px-10 py-4 flex justify-center items-center cursor-pointer hover:bg-gray-400/50  border border-transparent font-medium;
+  }
+  .form-input {
+    @apply border-gray-800/80 border-1 rounded dark:border-white;
+  }
+  .modal-content {
+    @apply bg-white dark:bg-dark-900 rounded shadow-2xl shadow-black/50;
+  }
+}
+@theme {
+  --font-main: "Roboto", sans-serif;
+  /* Dark Mode Base */
+  --color-dark-50: #f9fafb;
+  --color-dark-100: #f3f4f6;
+  --color-dark-200: #e5e7eb;
+  --color-dark-300: #d1d5db;
+  --color-dark-400: #9ca3af;
+  --color-dark-500: #6b7280;
+  --color-dark-600: #4b5563;
+  --color-dark-700: #374151;
+  --color-dark-800: #1f2937; /* Base background */
+  --color-dark-900: #111827; /* Darker elements */
+
+  /* Primary Colors */
+  --color-primary-300: #67e8f9;
+  --color-primary-400: #22d3ee;
+  --color-primary-500: #06b6d4;
+
+  /* Secondary Colors */
+  --color-secondary-400: #a78bfa;
+  --color-secondary-500: #8b5cf6;
+
+  /* Accent Colors */
+  --color-accent-400: #fb7185;
+  --color-accent-500: #f43f5e;
+
+  /* State Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+}

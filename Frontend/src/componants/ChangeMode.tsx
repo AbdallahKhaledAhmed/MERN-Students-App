@@ -20,7 +20,7 @@ export default function ChangeMode({ root }: ChangeModeProps) {
       onClick={() => {
         setDarkMode(!darkmode);
       }}
-      className="fixed top-2 right-2 hover:bg-gray-400/50 rounded-full cursor-pointer p-1.5 flex justify-center items-center text-4xl"
+      className="absolute top-2 right-2 hover:bg-gray-400/50 rounded-full cursor-pointer p-1.5 flex justify-center items-center text-4xl"
     >
       {darkmode ? (
         <i className="bx bxs-sun" title="Switch to Light Mode"></i>
