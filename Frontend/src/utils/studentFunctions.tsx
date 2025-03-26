@@ -103,7 +103,6 @@ export function updateStudent(
   setStudentsArray: React.Dispatch<React.SetStateAction<student[]>>,
   form: React.RefObject<HTMLFormElement | null>
 ) {
-  setShowModal(true);
   setModalData(
     <div className="modal-content">
       <header className="text-xl px-7 py-2">Edit Student</header>
@@ -127,6 +126,7 @@ export function updateStudent(
       </footer>
     </div>
   );
+  setShowModal(true);
 }
 export function deleteStudent(
   person: student,
