@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { student } from "../main";
-import InputFields from "../componants/InputFields";
+import InputFields from "../components/InputFields";
 
 const apiUrl =
   "https://backend-mern-students-app-production.up.railway.app/students/";

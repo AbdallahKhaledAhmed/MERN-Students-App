@@ -1,7 +1,7 @@
 import "./build.css";
 import { useRef } from "react";
-import MyTable from "./componants/MyTable";
-import ChangeMode from "./componants/ChangeMode";
+import MyTable from "./components/MyTable";
+import ChangeMode from "./components/ChangeMode";
 
 function App() {
   const root = useRef<HTMLDivElement>(null);
