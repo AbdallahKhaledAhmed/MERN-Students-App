@@ -3,7 +3,7 @@ In this repo I learned about CRUD operations by making a simple students data ap
 
 I used tailwind for styling and added darkmode
 
-I used mongodb as a database and express for backend and mongoose as an ORM
+I used mongodb as a database and express for backend and mongoose as an ODM
 
 and used react for the frontend.
 
