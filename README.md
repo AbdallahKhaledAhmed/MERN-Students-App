@@ -6,5 +6,3 @@ I used tailwind for styling and added darkmode
 I used mongodb as a database and express for backend and mongoose as an ODM
 
 and used react for the frontend.
-
-Preview : https://mern-students-app-production.up.railway.app/
